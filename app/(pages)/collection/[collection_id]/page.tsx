@@ -3,21 +3,31 @@ import { useTodoStore } from "@/app/stores/todos";
 import { Todo } from "@/app/types/global";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const ShowCollection = () => {
     const params = useParams();
     const {todos, setTodos, removeTodo, updateTodo}  = useTodoStore();
-        const router = useRouter();
+    const router = useRouter();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         (async() => {
-            const todos = await axios.get(`/api/todos?id=${params.collection_id}`);
-            setTodos(todos.data.data);
+            try {
+                const todos = await axios.get(`/api/todos?id=${params.collection_id}`);
+                setTodos(todos.data.data);
+            }
+            catch(error) {
+                console.error(error);
+            }
+            finally {
+                setLoading(false);
+            }
         })();
     }, []);
 
     const toggleActivity = async(todo: Todo) => {
+        setLoading(true);
         try {
             const res = await axios.put('/api/todos', {
                 id: todo.id,
@@ -29,15 +39,22 @@ const ShowCollection = () => {
         catch(err) {
             console.error('Cannot update: ', err);
         }
+        finally {
+            setLoading(false);
+        }
     }
 
     const deleteTodo = async(id: number) => {
+        setLoading(true);
         try {
             await axios.delete('/api/todos', {data: {id: id}});
             removeTodo(id);
         }
         catch(err) {
             console.error('Cannot delete: ', err);
+        }
+        finally {
+            setLoading(false);
         }
     }
 
@@ -55,6 +72,7 @@ const ShowCollection = () => {
                 })
             }
         </ul>
+        {loading && <div>Loading...</div>} 
         <button className="bg-sky-500 hover:bg-sky-700 rounded-lg" onClick={() => router.back()}>Go Back</button>
         </>
     );

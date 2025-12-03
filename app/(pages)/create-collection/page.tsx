@@ -50,7 +50,7 @@ const CreateCollection = () => {
                             return (
                                 <div className="my-3" key={`${t}-${i}`}>
                                     <input type="text" name={`text-${i}`} readOnly value={t} className="bg-transparent" />
-                                    <button className="bg-sky-500 hover:bg-sky-700 rounded-lg" type="button" onClick={() => setTasks(prev => prev.filter((_t, int) => int !== i))}>REMOVE</button>
+                                    <button className="bg-sky-500 hover:bg-sky-700 rounded-lg ml-3" type="button" onClick={() => setTasks(prev => prev.filter((_t, int) => int !== i))}>REMOVE</button>
                                 </div>
                             );
                         })
