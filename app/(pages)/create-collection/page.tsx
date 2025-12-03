@@ -50,22 +50,22 @@ const CreateCollection = () => {
                             return (
                                 <div className="my-3" key={`${t}-${i}`}>
                                     <input type="text" name={`text-${i}`} readOnly value={t} className="bg-transparent" />
-                                    <button className="bg-sky-500 hover:bg-sky-700 rounded-xl" type="button" onClick={() => setTasks(prev => prev.filter((_t, int) => int !== i))}>REMOVE</button>
+                                    <button className="bg-sky-500 hover:bg-sky-700 rounded-lg" type="button" onClick={() => setTasks(prev => prev.filter((_t, int) => int !== i))}>REMOVE</button>
                                 </div>
                             );
                         })
                     }
                     <fieldset>
                         <input type="text" placeholder="Task" ref={refText}/>
-                        <button className="bg-sky-500 hover:bg-sky-700 rounded-xl" type="button" onClick={addTask}>ADD</button>
+                        <button className="bg-sky-500 hover:bg-sky-700 rounded-lg ml-3" type="button" onClick={addTask}>ADD</button>
                     </fieldset>
-                    <button className="bg-sky-500 hover:bg-sky-700 rounded-xl mt-10 w-full">Create Collection</button>
-                    <button className="bg-sky-500 hover:bg-sky-700 rounded-xl mt-3 w-full" onClick={() => router.back()}>Go Back</button>
+                    <button className="bg-sky-500 hover:bg-sky-700 rounded-lg mt-10 w-full">Create Collection</button>
+                    <button className="bg-sky-500 hover:bg-sky-700 rounded-lg mt-3 w-full" onClick={() => router.back()}>Go Back</button>
                 </form>
                 :
                 <>
-                    { status === 'Success' ? <h2>Collection created successfully!</h2> : <p>{status}</p> }
-                    <Link href="/" className="bg-sky-500 hover:bg-sky-700 rounded-xl mt-10">Home page</Link>
+                    { status === 'Success' ? <h2 className="m-10">Collection created successfully!</h2> : <p>{status}</p> }
+                    <Link href="/" className="bg-sky-500 hover:bg-sky-700 rounded-lg p-1 block text-center">Home page</Link>
                 </>
             }
         </div>

@@ -44,6 +44,11 @@ button,
 input {
   padding: 0 15px;
   height: 32px;
+  border-radius: 8px;
+}
+
+input {
+  border: 1px solid black;
 }
 
 @media (prefers-color-scheme: dark) {

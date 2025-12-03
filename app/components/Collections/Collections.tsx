@@ -32,17 +32,19 @@ const Collections = () => {
 
     return (
         <Suspense fallback={'...Loading'}>
-            { collections.length ?
-                collections.map(c => {
-                    return (
-                        <div key={`collection-${c.id}`}>
-                            <Link href={`/collection/${c.id}`}>{c.text}</Link>
-                            <button onClick={() => removeCollection(c.id)} className="bg-sky-500 hover:bg-sky-700 rounded-xl">REMOVE</button>
-                        </div>
-                    );
-                })
-                : 'No collections'
-            }
+            <div className="m-10">
+                { collections.length ?
+                    collections.map(c => {
+                        return (
+                            <div key={`collection-${c.id}`}>
+                                <Link href={`/collection/${c.id}`}>{c.text}</Link>
+                                <button onClick={() => removeCollection(c.id)} className="bg-sky-500 hover:bg-sky-700 rounded-lg ml-3">REMOVE</button>
+                            </div>
+                        );
+                    })
+                    : <span>No collections<br />Make a new collection with a "+" button on the bottom right corner.</span>
+                }
+            </div>
         </Suspense>
     );
 };

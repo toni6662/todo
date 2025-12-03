@@ -43,19 +43,19 @@ const ShowCollection = () => {
 
     return (
         <>
-        <ul>
+        <ul className="m-10">
             {
                 todos.map(t => {
                     return (
                         <li key={t.id} className={`${t.completed ? 'line-through' : 'none'}`}>
                             <span onClick={() => toggleActivity(t)}>{t.text}</span>
-                            <button onClick={() => deleteTodo(t.id)} className="bg-sky-500 hover:bg-sky-700 rounded-xl">Remove</button>
+                            <button onClick={() => deleteTodo(t.id)} className="bg-sky-500 hover:bg-sky-700 rounded-lg mx-3 my-1">Remove</button>
                         </li>
                     );
                 })
             }
         </ul>
-        <button className="bg-sky-500 hover:bg-sky-700 rounded-xl mt-3" onClick={() => router.back()}>Go Back</button>
+        <button className="bg-sky-500 hover:bg-sky-700 rounded-lg" onClick={() => router.back()}>Go Back</button>
         </>
     );
 }

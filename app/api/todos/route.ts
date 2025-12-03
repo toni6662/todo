@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
     if (isNaN(collectionId)) {
         return NextResponse.json({ error: "Invalid id" }, { status: 400 });
     }
-    const todos = await pool.query('SELECT * FROM todo_announced.todos WHERE collection_id=$1', [collectionId]);
+    const todos = await pool.query('SELECT * FROM todo_announced.todos WHERE collection_id=$1 ORDER BY created_at', [collectionId]);
     return NextResponse.json({ data: todos.rows })
 }
 
