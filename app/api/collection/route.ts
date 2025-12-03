@@ -9,9 +9,11 @@ export async function POST(req: Request) {
     const {title, ...data} = await req.json();
     const newCollection = await pool.query('INSERT INTO todo_announced.collection (text, date) VALUES ($1, $2) RETURNING *;', [title, new Date().toISOString().split('T')[0]]);
     const collectionID = newCollection.rows[0].id;
-    await Object.values(data).map(async (t) => {
-        await pool.query('INSERT INTO todo_announced.todos (text, completed, collection_id) VALUES ($1, false, $2) RETURNING *;', [t, collectionID]);
-     });
+    await Promise.all(
+        Object.values(data).map((t) => 
+            pool.query('INSERT INTO todo_announced.todos (text, completed, collection_id) VALUES ($1, false, $2) RETURNING *;', [t, collectionID])
+        )
+    );
     return Response.json({ data: newCollection.rows });
 }
 

@@ -7,14 +7,18 @@ export async function GET(req: NextRequest) {
     if (!id) {
         return NextResponse.json({ error: "Missing id parameter" }, { status: 400 });
     }
-    const todos = await pool.query('SELECT * FROM todo_announced.todos WHERE collection_id=$1;', [id]);
+    const collectionId = parseInt(id, 10);
+    if (isNaN(collectionId)) {
+        return NextResponse.json({ error: "Invalid id" }, { status: 400 });
+    }
+    const todos = await pool.query('SELECT * FROM todo_announced.todos WHERE collection_id=$1;', [collectionId]);
     return NextResponse.json({ data: todos.rows })
 }
 
 export async function POST(req: Request) {
     const {text} = await req.json();
     const newTodo = await pool.query('INSERT INTO todo_announced.todos (text, completed) VALUES ($1, false) RETURNING *;', [text]);
-    return Response.json({ data: newTodo.rows });
+    return NextResponse.json({ data: newTodo.rows });
 }
 
 export async function PUT(req: Request) {
@@ -26,11 +30,11 @@ export async function PUT(req: Request) {
     if(completed !== null) {
         res = await pool.query('UPDATE todo_announced.todos SET completed = $1 WHERE id = $2 RETURNING *;', [completed, id]);
     }
-    return Response.json({ data: res?.rows });
+    return NextResponse.json({ data: res?.rows });
 }
 
 export async function DELETE(req: Request) {
     const {id} = await req.json();
     await pool.query('DELETE FROM todo_announced.todos WHERE id=$1', [id]);
-    return Response.json({message: 'Deleted!'});
+    return NextResponse.json({message: 'Deleted!'});
 }
