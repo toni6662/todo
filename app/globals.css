@@ -44,9 +44,6 @@ button,
 input {
   padding: 0 15px;
   height: 32px;
-  & + button {
-    margin-left: 10px;
-  }
 }
 
 @media (prefers-color-scheme: dark) {

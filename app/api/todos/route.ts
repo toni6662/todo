@@ -1,8 +1,14 @@
 import pool from "@/app/lib/db";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
-    const todos = await pool.query('SELECT * FROM todo_announced.todos;');
-    return Response.json({ data: todos.rows })
+export async function GET(req: NextRequest) {
+    const {searchParams} = new URL(req.url);
+    const id = searchParams.get('id');
+    if (!id) {
+        return NextResponse.json({ error: "Missing id parameter" }, { status: 400 });
+    }
+    const todos = await pool.query('SELECT * FROM todo_announced.todos WHERE collection_id=$1;', [id]);
+    return NextResponse.json({ data: todos.rows })
 }
 
 export async function POST(req: Request) {
