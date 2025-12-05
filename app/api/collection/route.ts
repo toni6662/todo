@@ -7,7 +7,7 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
-    const {title = Date.now(), ...data} = await req.json();
+    const {title, ...data} = await req.json();
     if(!data) {
         return NextResponse.json({error: 'No data to set'});
     }

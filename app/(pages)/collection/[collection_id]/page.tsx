@@ -62,18 +62,18 @@ const ShowCollection = () => {
         <>
         <ul className="m-10">
             {
-                todos.map(t => {
+                todos.map((t, i) => {
                     return (
-                        <li key={t.id} className={`${t.completed ? 'line-through' : 'none'}`}>
+                        <li key={t.id} className={`${i === 0 && 'border-t'} border-b border-white/50 max-w-lg m-auto flex items-center justify-between px-4 py-2 ${t.completed ? 'line-through' : 'none'}`}>
                             <span onClick={() => toggleActivity(t)}>{t.text}</span>
-                            <button onClick={() => deleteTodo(t.id)} className="bg-sky-500 hover:bg-sky-700 rounded-lg mx-3 my-1">Remove</button>
+                            <button onClick={() => deleteTodo(t.id)} className="bg-sky-300 hover:bg-sky-200 rounded-lg mx-3 my-1">Remove</button>
                         </li>
                     );
                 })
             }
         </ul>
         {loading && <div>Loading...</div>} 
-        <button className="bg-sky-500 hover:bg-sky-700 rounded-lg" onClick={() => router.back()}>Go Back</button>
+        <button className="bg-sky-300 hover:bg-sky-200 rounded-lg" onClick={() => router.back()}>Go Back</button>
         </>
     );
 }

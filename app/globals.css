@@ -42,13 +42,10 @@ a {
 
 button,
 input {
+  margin: 10px 0;
   padding: 0 15px;
   height: 32px;
   border-radius: 8px;
-}
-
-input {
-  border: 1px solid black;
 }
 
 @media (prefers-color-scheme: dark) {
