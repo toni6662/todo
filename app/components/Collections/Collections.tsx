@@ -38,17 +38,24 @@ const Collections = () => {
 
     return (
         <div className="m-10">
-            { collections.length ?
-                collections.map((c, i) => {
-                    return (
-                        <div key={`collection-${c.id}`} className={`${i === 0 && 'border-t'} border-b border-white/50 max-w-lg m-auto flex items-center justify-between px-4`}>
-                            <Link href={`/collection/${c.id}`}>{c.text}</Link>
-                            <button onClick={() => removeCollection(c.id)} className="bg-sky-300 hover:bg-sky-200 rounded-lg ml-3">REMOVE</button>
-                        </div>
-                    );
-                })
-                : <span>No collections<br />Make a new collection with a "+" button on the bottom right corner.</span>
+            { collections.length ? 
+                <>
+                <h1>Collections: </h1>
+                {
+                    collections.map((c, i) => {
+                        return (
+                            <div key={`collection-${c.id}`} className={`${i === 0 && 'border-t'} border-b border-white/50 max-w-lg m-auto flex items-center justify-between px-4`}>
+                                <Link href={`/collection/${c.id}`}>{c.text}</Link>
+                                <button onClick={() => removeCollection(c.id)} className="bg-sky-300 hover:bg-sky-200 rounded-lg ml-3">REMOVE</button>
+                            </div>
+                        );
+                    })
+                }
+                </>
+                :
+                <span>No collections<br /></span>
             }
+            <small>Make a new collection with a "+" button on the bottom right corner.</small>
         </div>
     );
 };

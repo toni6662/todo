@@ -12,7 +12,8 @@ export async function GET(req: NextRequest) {
         return NextResponse.json({ error: "Invalid id" }, { status: 400 });
     }
     const todos = await pool.query('SELECT * FROM todo_announced.todos WHERE collection_id=$1 ORDER BY created_at', [collectionId]);
-    return NextResponse.json({ data: todos.rows })
+    const title = await pool.query('SELECT text FROM todo_announced.collection WHERE id=$1', [collectionId]);
+    return NextResponse.json({ data: todos.rows, title: title.rows })
 }
 
 export async function POST(req: Request) {

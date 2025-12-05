@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 const ShowCollection = () => {
     const params = useParams();
     const {todos, setTodos, removeTodo, updateTodo}  = useTodoStore();
+    const [title, setTitle] = useState('');
     const router = useRouter();
     const [loading, setLoading] = useState(true);
 
@@ -15,6 +16,8 @@ const ShowCollection = () => {
         (async() => {
             try {
                 const todos = await axios.get(`/api/todos?id=${params.collection_id}`);
+                console.log(todos);
+                setTitle(todos.data.title[0].text);
                 setTodos(todos.data.data);
             }
             catch(error) {
@@ -57,10 +60,11 @@ const ShowCollection = () => {
             setLoading(false);
         }
     }
-
+    console.log(todos);
     return (
         <>
-        <ul className="m-10">
+        <h1 className="m-10">{title}</h1>
+        <ul>
             {
                 todos.map((t, i) => {
                     return (
