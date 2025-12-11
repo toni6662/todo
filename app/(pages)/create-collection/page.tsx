@@ -44,7 +44,7 @@ const CreateCollection = () => {
         <div className="max-w-lg m-auto text-left">
             {status === '' ?
                 <form onSubmit={createCollection}>
-                    <input className="group flex h-6 w-6 items-center justify-center sm:justify-start md:h-auto md:w-80 md:flex-none md:rounded-lg md:py-2.5 md:pr-3.5 md:pl-4 md:text-sm md:ring-1 md:ring-slate-200 md:hover:ring-slate-300 lg:w-96 dark:md:bg-slate-800/75 dark:md:ring-white/5 dark:md:ring-inset dark:md:hover:bg-slate-700/40 dark:md:hover:ring-slate-500" type="text" name="title" placeholder="Collection title" />
+                    <input className="group flex h-8 w-full items-center justify-center sm:justify-start md:h-auto md:flex-none md:rounded-lg md:py-2.5 md:pr-3.5 md:pl-4 md:text-sm md:ring-1 md:ring-slate-200 md:hover:ring-slate-300 dark:md:bg-slate-800/75 dark:md:ring-white/5 dark:md:ring-inset dark:md:hover:bg-slate-700/40 dark:md:hover:ring-slate-500" type="text" name="title" placeholder="Collection title" />
                     {
                         tasks.map((t, i) => {
                             return (
@@ -55,8 +55,8 @@ const CreateCollection = () => {
                             );
                         })
                     }
-                    <fieldset className="grid auto-cols-max grid-flow-col items-center">
-                        <input type="text" placeholder="Task" ref={refText} className="group flex h-6 w-6 items-center justify-center sm:justify-start md:h-auto md:w-80 md:flex-none md:rounded-lg md:py-2.5 md:pr-3.5 md:pl-4 md:text-sm md:ring-1 md:ring-slate-200 md:hover:ring-slate-300 lg:w-96 dark:md:bg-slate-800/75 dark:md:ring-white/5 dark:md:ring-inset dark:md:hover:bg-slate-700/40 dark:md:hover:ring-slate-500"/>
+                    <fieldset className="grid grid-cols-[1fr_auto] auto-cols-max grid-flow-col items-center">
+                        <input type="text" placeholder="Task" ref={refText} className="group flex h-8 w-full items-center justify-center sm:justify-start md:h-auto md:flex-none md:rounded-lg md:py-2.5 md:pr-3.5 md:pl-4 md:text-sm md:ring-1 md:ring-slate-200 md:hover:ring-slate-300 dark:md:bg-slate-800/75 dark:md:ring-white/5 dark:md:ring-inset dark:md:hover:bg-slate-700/40 dark:md:hover:ring-slate-500"/>
                         <button className="bg-sky-300 hover:bg-sky-200 rounded-lg ml-3 text-slate-900" type="button" onClick={addTask}>ADD</button>
                     </fieldset>
                     <div className="grid grid-cols-2 gap-4 items-center">
