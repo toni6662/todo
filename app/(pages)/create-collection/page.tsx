@@ -41,7 +41,7 @@ const CreateCollection = () => {
     }
 
     return (
-        <div className="max-w-lg m-auto text-left">
+        <div className="max-w-lg m-auto text-left p-5">
             {status === '' ?
                 <form onSubmit={createCollection}>
                     <input className="group flex h-8 w-full items-center justify-center sm:justify-start md:h-auto md:flex-none md:rounded-lg md:py-2.5 md:pr-3.5 md:pl-4 md:text-sm md:ring-1 md:ring-slate-200 md:hover:ring-slate-300 dark:md:bg-slate-800/75 dark:md:ring-white/5 dark:md:ring-inset dark:md:hover:bg-slate-700/40 dark:md:hover:ring-slate-500" type="text" name="title" placeholder="Collection title" />

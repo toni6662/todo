@@ -11,6 +11,7 @@ const ShowCollection = () => {
     const [title, setTitle] = useState('');
     const router = useRouter();
     const [loading, setLoading] = useState(true);
+    const [pageLoader, setPageLoader] = useState(true);
 
     useEffect(() => {
         (async() => {
@@ -25,6 +26,7 @@ const ShowCollection = () => {
             }
             finally {
                 setLoading(false);
+                setPageLoader(false);
             }
         })();
     }, []);
@@ -60,7 +62,7 @@ const ShowCollection = () => {
             setLoading(false);
         }
     }
-    console.log(todos);
+    if(pageLoader) return <div>Loading...</div>;
     return (
         <>
         <h1 className="m-10">{title}</h1>
